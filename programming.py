@@ -48,3 +48,21 @@ plt.xlabel("Age-adjusted Death Rate")
 plt.ylabel("Cause of Death")
 plt.tight_layout()
 plt.show()
+
+import numpy as np
+
+# Creating a bar chart to show the top three causes of death for each year
+
+# Determine the top three causes of death for each year
+top_causes_each_year = simplified_data .groupby('Year').apply(lambda x: x.nlargest(3, 'Deaths')).reset_index(drop=True)
+
+# Pivot this data to make it suitable for a bar chart
+pivot_data_bar = top_causes_each_year.pivot(index='Year', columns='Cause Name', values='Deaths').fillna(0)
+
+# Plotting
+pivot_data_bar.plot(kind='bar', stacked=True, figsize=(15, 8), colormap='viridis')
+plt.title('Top Three Causes of Death Each Year')
+plt.xlabel('Year')
+plt.ylabel('Number of Deaths')
+plt.legend(title='Cause of Death', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.show()
