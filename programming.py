@@ -9,6 +9,7 @@ simplified_summary = simplified_data.groupby('Cause Name').agg(
     Total_Deaths=pd.NamedAgg(column='Deaths', aggfunc='sum'),
     Average_Age_Adjusted_Death_Rate=pd.NamedAgg(column='Age-adjusted Death Rate', aggfunc='mean')
 ).reset_index()
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 simplified_summary.head()
@@ -25,5 +26,16 @@ plt.xlabel("Year")
 plt.ylabel("Number of Deaths")
 plt.xticks(rotation=45)
 plt.legend(title='Cause of Death', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
+plt.show()
+
+year=2017
+comparison_data = data[data['Year'] == year]
+comparison_data = comparison_data[comparison_data['State'] == 'United States']
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Deaths', y='Cause Name', data=comparison_data, palette='deep')
+plt.title(f"Comparison of Causes of Death in {year}")
+plt.xlabel("Number of Deaths")
+plt.ylabel("Cause of Death")
 plt.tight_layout()
 plt.show()
