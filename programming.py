@@ -39,3 +39,12 @@ plt.xlabel("Number of Deaths")
 plt.ylabel("Cause of Death")
 plt.tight_layout()
 plt.show()
+
+rate_data = data[data['Year'] == year]
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Age-adjusted Death Rate', y='Cause Name', data=rate_data, palette='coolwarm')
+plt.title(f"Age-adjusted Death Rates by Cause in {year}")
+plt.xlabel("Age-adjusted Death Rate")
+plt.ylabel("Cause of Death")
+plt.tight_layout()
+plt.show()
