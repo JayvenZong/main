@@ -117,9 +117,7 @@ plt.tight_layout()
 plt.show()
 
 
-# Creating Box Plot and Scatter Plot with the actual data
-
-# Box Plot
+# Creating box plots with actual data
 plt.figure(figsize=(12, 8))
 sns.boxplot(data=simplified_data, x="Cause Name", y="Age-adjusted Death Rate")
 plt.title("Box Plot of Age-adjusted Death Rates by Cause of Death")
@@ -129,7 +127,7 @@ plt.xticks(rotation=90)
 plt.tight_layout()
 plt.show()
 
-# Scatter Plot
+# Creating scatterplots with real data
 plt.figure(figsize=(12, 8))
 sns.scatterplot(data=simplified_data, x="Age-adjusted Death Rate", y="Deaths", hue="Cause Name", s=100)
 plt.title("Scatter Plot of Deaths vs Age-adjusted Death Rate")
@@ -137,5 +135,17 @@ plt.xlabel("Age-adjusted Death Rate")
 plt.ylabel("Total Deaths")
 plt.legend(title="Cause of Death", bbox_to_anchor=(1.05, 1), loc=2)
 plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+heatmap_data = simplified_data.pivot_table(index='Cause Name', columns='Year', values='Age-adjusted Death Rate', aggfunc='mean')
+# Plotting heatmaps with gridlines and data annotations
+plt.figure(figsize=(15, 10))
+sns.heatmap(heatmap_data, cmap="YlGnBu", annot=True, fmt=".1f", linewidths=.5, cbar_kws={'label': 'Age-adjusted Death Rate'})
+plt.title("Heatmap of Age-adjusted Death Rates by Cause of Death Over Years")
+plt.xlabel("Year")
+plt.ylabel("Cause of Death")
+plt.xticks(rotation=45)
+plt.yticks(rotation=0)
 plt.tight_layout()
 plt.show()
