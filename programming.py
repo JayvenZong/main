@@ -26,13 +26,13 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Filtering data sets
-causewise_trends = data[data['State'] == 'United States'].pivot(index='Year', columns='Cause Name', values='Deaths')
+data_trends = data[data['State'] == 'United States'].pivot(index='Year', columns='Cause Name', values='Deaths')
 
 # Setting Up the Plot
 plt.figure(figsize=(15, 8))
 
 # Creating the Line Plot
-sns.lineplot(data=causewise_trends)
+sns.lineplot(data=data_trends)
 
 # Adding drawing titles and labels
 plt.title("Trends in Deaths by Cause Over Years in United States")
@@ -138,6 +138,7 @@ plt.grid(True)
 plt.tight_layout()
 plt.show()
 
+# Reshaping Data to Create a Pivot Table
 heatmap_data = simplified_data.pivot_table(index='Cause Name', columns='Year', values='Age-adjusted Death Rate', aggfunc='mean')
 # Plotting heatmaps with gridlines and data annotations
 plt.figure(figsize=(15, 10))
