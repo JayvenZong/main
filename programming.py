@@ -115,3 +115,27 @@ plt.xticks(rotation=45)
 plt.legend(title='State', bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.tight_layout()
 plt.show()
+
+
+# Creating Box Plot and Scatter Plot with the actual data
+
+# Box Plot
+plt.figure(figsize=(12, 8))
+sns.boxplot(data=simplified_data, x="Cause Name", y="Age-adjusted Death Rate")
+plt.title("Box Plot of Age-adjusted Death Rates by Cause of Death")
+plt.xlabel("Cause of Death")
+plt.ylabel("Age-adjusted Death Rate")
+plt.xticks(rotation=90)
+plt.tight_layout()
+plt.show()
+
+# Scatter Plot
+plt.figure(figsize=(12, 8))
+sns.scatterplot(data=simplified_data, x="Age-adjusted Death Rate", y="Deaths", hue="Cause Name", s=100)
+plt.title("Scatter Plot of Deaths vs Age-adjusted Death Rate")
+plt.xlabel("Age-adjusted Death Rate")
+plt.ylabel("Total Deaths")
+plt.legend(title="Cause of Death", bbox_to_anchor=(1.05, 1), loc=2)
+plt.grid(True)
+plt.tight_layout()
+plt.show()
